@@ -2,6 +2,12 @@
 // A $( document ).ready() block.
 $( document ).ready(function() {
     let data; // Declare the global variable
+    const spinalLevels = [
+      "C1", "C2", "C3", "C4", "C5", "C6", "C7",
+      "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12",
+      "L1", "L2", "L3", "L4", "L5",
+      "S1", "S2", "S3", "S4", "S5"
+    ]
     // declare to_day variable 
     let to_day=new Date 
     $.ajax({
@@ -11,9 +17,11 @@ $( document ).ready(function() {
         success: function(response){
             data=response;
             date = new Date(data[1].dateOfBirth)
+            console.log(Object.keys(data[0]))
 
             console.log(new Date - date)
             buildTable(response)
+            tableHead(Object.keys(data[0]))
         },
         error: function(r){
             console.log(r+"Loi cmnr")
@@ -29,12 +37,21 @@ $( document ).ready(function() {
 
 // populate json file to the table 
   let table = document.querySelector('#participants');
+  let table_heads = document.querySelector('#table_heads');
+  function tableHead(data){
+    let len=data.length
+    for (let i=0;i<len;i++){
+      let heads= `
+      <th> ${data[i]} </th`
+      table_heads.innerHTML+=heads
+    }
+  }
   function buildTable(data){
       let len=data.length
       console.log(len)
       for (let i = 0; i < len; i++){
           let row = `<tr>
-              <td id=>${data[i].name}</td>
+              <td>${data[i].name}</td>
               <td>${data[i].dateOfBirth}</td>
               <!-- Calculate age using dateOfBirth -->
               <td>${Math.round((to_day - new Date(data[i].dateOfBirth))/(60*60*24*365*1000))}</td>
@@ -49,6 +66,8 @@ $( document ).ready(function() {
                       </tr>`
           table.innerHTML+=row
       }}
+// End of populating table
+
 
 
 

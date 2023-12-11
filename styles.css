@@ -8,6 +8,7 @@ tr:hover {background-color: paleturquoise;}
 
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
+    display: flex;
     background-color: #eee;
     color: #444;
     cursor: pointer;
@@ -21,6 +22,7 @@ tr:hover {background-color: paleturquoise;}
   
   /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
   .active, .collapsible:hover {
+    display: flex;
     background-color: #ccc;
   }
   
@@ -31,3 +33,4 @@ tr:hover {background-color: paleturquoise;}
     overflow: hidden;
     background-color: #f1f1f1;
   }
+

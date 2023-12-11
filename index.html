@@ -11,28 +11,29 @@
 </head>
 <body>
     <h1>Potential Participants</h1>
+    <!-- Section for filtering -->
     <button type="button" class="collapsible">Open filter tool</button>
-        <div class="collapsible_content">
+        <section class="collapsible_content">
             <p>Maximum Age</p>
-        </div>
+            <input type="number" id="maximum_age" name="Maximum age" min="1" max="120" value="75" />
+            <p>Minimum Age</p>
+            <input type="number" id="minimum_age" name="Minimum age" min="1" max="70" value="18" />
+            <p>Level of Injury</p>
+            <div class="level_of_injury">
+
+            </div>
+        </section>
+
+        <!-- End of filtering -->
     <table>
-        <tr>
-            <th>name</th>
-            <th>dateOfBirth</th>
-            <th>age</th>
-            <th>location</th>
-            <th>phone</th>
-            <th>email</th>
-            <th>levelOfInjury</th>
-            <th>ais</th>
-            <th>studiesEnrolled</th>
-            <th>eligibleForStudies</th>
-            <th>notes</th>
+        <tr id="table_heads">
         </tr>
-        <tbody id="participants">
-            
+        <tbody id="participants">          
         </tbody>
     </table>
+
+
+
     
 </body>
 </html>
