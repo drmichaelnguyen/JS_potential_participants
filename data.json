@@ -1,0 +1,51 @@
+[
+    {
+      "name": "John Doe",
+      "dateOfBirth": "1990-05-15",
+      "location": "Cityville, USA",
+      "phone": "+1 (555) 123-4567",
+      "email": "john.doe@email.com",
+      "levelOfInjury": "C6",
+      "ais": "B",
+      "studiesEnrolled": ["Computer Science", "Psychology"],
+      "eligibleForStudies": ["Computer Science"],
+      "notes": "Enjoys coding and outdoor activities."
+    },
+    {
+      "name": "Jane Smith",
+      "dateOfBirth": "1985-08-22",
+      "location": "Townsville, Canada",
+      "phone": "+1 (555) 987-6543",
+      "email": "jane.smith@email.com",
+      "levelOfInjury": "T4",
+      "ais": "C",
+      "studiesEnrolled": ["Biomedical Engineering"],
+      "eligibleForStudies": ["Biomedical Engineering"],
+      "notes": "Passionate about medical research."
+    },
+    {
+      "name": "Alex Johnson",
+      "dateOfBirth": "1982-03-10",
+      "location": "Villageburg, UK",
+      "phone": "+44 20 7123 4567",
+      "email": "alex.johnson@email.com",
+      "levelOfInjury": "T8",
+      "ais": "D",
+      "studiesEnrolled": ["Physical Therapy"],
+      "eligibleForStudies": ["Physical Therapy"],
+      "notes": "Former athlete, interested in rehabilitation."
+    },
+    {
+      "name": "Emily Wilson",
+      "dateOfBirth": "1995-11-30",
+      "location": "Hamletville, Australia",
+      "phone": "+61 2 9876 5432",
+      "email": "emily.wilson@email.com",
+      "levelOfInjury": "C5",
+      "ais": "A",
+      "studiesEnrolled": ["Occupational Therapy", "Social Work"],
+      "eligibleForStudies": ["Occupational Therapy"],
+      "notes": "Art enthusiast and community volunteer."
+    }
+  ]
+  
