@@ -2,7 +2,7 @@
 // A $( document ).ready() block.
 $(document ).ready(function() {
     var data; // Declare the global variable
-    var all_keys;
+
     const spinalLevels = [
       "C1", "C2", "C3", "C4", "C5", "C6", "C7",
       "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12",
@@ -21,7 +21,6 @@ $(document ).ready(function() {
             buildTable(data)
             // execute the function to populate tableheads
             tableHead(Object.keys(data[0]))
-
         },
         error: function(r){
             console.log(r+"Loi cmnr")
@@ -48,12 +47,8 @@ console.log(data)
     table_heads.innerHTML+= `
       <th id='age' > Age </th>`
   }
-    // $("#table_heads").children('th.'#dateOfBirth').css({"color": "red", "border": "2px solid red"});
   function buildTable(data){
       let len_table=data.length
-      let table_heads=(Object.keys(data[0]))
-
-      
       for (let i = 0; i < len_table; i++){
         cell=""
         let row=""
