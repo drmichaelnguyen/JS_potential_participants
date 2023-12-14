@@ -27,11 +27,7 @@ $(document ).ready(function() {
         }
     })
 
-// Define a function that can convert string dateofBirth to date format and calculate age 
-    function to_date(date){
-        date.split('-');
-        new_date= new Date()
-    }
+
 console.log(data)
 // populate json file to the table 
   let table = document.querySelector('#participants');
@@ -45,7 +41,9 @@ console.log(data)
       
     }
     table_heads.innerHTML+= `
-      <th id='age' > Age </th>`
+      <th id='age' > Age </th>
+      <th id='year_from_injury' > Year From Injury </th>
+      `
   }
   function buildTable(data){
       let len_table=data.length
@@ -57,7 +55,10 @@ console.log(data)
           let cell=`<td> ${data[i][k]} </td>`
           row+=cell
         }
-       row+= ` <td>${Math.round((to_day - new Date(data[i].dateOfBirth))/(60*60*24*365*1000))}</td>           </tr>`
+       row+= ` <td>${Math.round((to_day - new Date(data[i].dateOfBirth))/(60*60*24*365*1000))}</td>
+               <td>${Math.round((to_day - new Date(data[i].dateOfInjury))/(60*60*24*365*1000))}</td> 
+       `
+
         table.innerHTML+=row
       }}
 // End of populating table
