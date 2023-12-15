@@ -33,4 +33,7 @@ tr:hover {background-color: paleturquoise;}
     overflow: hidden;
     background-color: #f1f1f1;
   }
-
+/* Style the spinal_level_button */
+.spinal_level_button {
+  background-color: blanchedalmond;
+}

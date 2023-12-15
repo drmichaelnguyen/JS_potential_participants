@@ -12,7 +12,8 @@
     "ais": "B",
     "studiesEnrolled": ["Computer Science", "Psychology"],
     "eligibleForStudies": ["Computer Science"],
-    "notes": "Enjoys coding and outdoor activities."
+    "notes": "Enjoys coding and outdoor activities.",
+    "datesContacted": ["2022-01-15", "2022-03-20", "2022-05-10"]
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
     "ais": "C",
     "studiesEnrolled": ["Biomedical Engineering"],
     "eligibleForStudies": ["Biomedical Engineering"],
-    "notes": "Passionate about medical research."
+    "notes": "Passionate about medical research.",
+    "datesContacted": ["2022-02-18", "2022-04-25", "2022-06-12"]
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
     "ais": "D",
     "studiesEnrolled": ["Physical Therapy"],
     "eligibleForStudies": ["Physical Therapy"],
-    "notes": "Former athlete, interested in rehabilitation."
+    "notes": "Former athlete, interested in rehabilitation.",
+    "datesContacted": ["2022-01-28", "2022-03-15", "2022-05-22"]
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
     "ais": "A",
     "studiesEnrolled": ["Occupational Therapy", "Social Work"],
     "eligibleForStudies": ["Occupational Therapy"],
-    "notes": "Art enthusiast and community volunteer."
+    "notes": "Art enthusiast and community volunteer.",
+    "datesContacted": ["2022-02-10", "2022-04-20", "2022-06-05"]
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
     "ais": "C",
     "studiesEnrolled": ["Business Administration"],
     "eligibleForStudies": ["Business Administration"],
-    "notes": "Entrepreneurial spirit and tech enthusiast."
+    "notes": "Entrepreneurial spirit and tech enthusiast.",
+    "datesContacted": ["2022-01-12", "2022-03-28", "2022-05-15"]
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
     "ais": "D",
     "studiesEnrolled": ["Psychology", "Sociology"],
     "eligibleForStudies": ["Psychology"],
-    "notes": "Passionate about mental health advocacy."
+    "notes": "Passionate about mental health advocacy.",
+    "datesContacted": ["2022-02-05", "2022-04-15", "2022-06-20"]
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
     "ais": "A",
     "studiesEnrolled": ["Political Science"],
     "eligibleForStudies": ["Political Science"],
-    "notes": "Advocating for disability rights."
+    "notes": "Advocating for disability rights.",
+    "datesContacted": ["2022-01-20", "2022-03-10", "2022-05-18"]
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
     "ais": "B",
     "studiesEnrolled": ["Engineering"],
     "eligibleForStudies": ["Engineering"],
-    "notes": "Dreams of becoming an engineer."
+    "notes": "Dreams of becoming an engineer.",
+    "datesContacted": ["2022-02-15", "2022-04-10", "2022-06-25"]
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
     "ais": "C",
     "studiesEnrolled": ["Mathematics"],
     "eligibleForStudies": ["Mathematics"],
-    "notes": "Passionate about numbers and problem-solving."
+    "notes": "Passionate about numbers and problem-solving.",
+    "datesContacted": ["2022-01-28", "2022-03-20", "2022-05-12"]
   },
   {
     "id": 10,
@@ -147,6 +156,7 @@
     "ais": "D",
     "studiesEnrolled": ["Graphic Design"],
     "eligibleForStudies": ["Graphic Design"],
-    "notes": "Expressing creativity through design."
+    "notes": "Expressing creativity through design.",
+    "datesContacted": ["2022-02-10", "2022-04-18", "2022-06-15"]
   }
 ]
