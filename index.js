@@ -7,8 +7,9 @@ $(document ).ready(function() {
       "C1", "C2", "C3", "C4", "C5", "C6", "C7",
       "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12",
       "L1", "L2", "L3", "L4", "L5",
-      "S1", "S2", "S3", "S4", "S5"
+      "S1", "S2", "S3", "S4", "S5", 'MS'
     ]
+    const group=['AIS A','AIS B','AIS C', 'AIS D', 'MS']
 
     // Declare variable to_day to calculate age & year from injury
     let to_day=new Date 
@@ -18,11 +19,11 @@ $(document ).ready(function() {
         dataType: 'json',
         success: function(response){
           data=response
-            date = new Date(data[1].dateOfBirth)
+            // date = new Date(data[1].dateOfBirth)
             // Calculated 
             data=calculated_field(data)
             // Execute the fn to populate table
-            data=ais_filter(data)
+            filtered_data=ais_filter(data)
             buildTable(data)
             isRendered = true
             // execute the function to populate tableheads
@@ -77,18 +78,8 @@ $(document ).ready(function() {
 
 
 
-  // Fn for making buttons for selecting levelOfInjury
-  function levelofInjurybuttons(button) {
-    let level_of_injury_selector=document.querySelector('#level_of_injury_filter')
-    for (let i in button) {
-   
-      html=`
-      <button class='spinal_level_button' id= '${button[i]}'>${button[i]} </button>`
-      level_of_injury_selector.innerHTML +=html
-    }
-  }
-  levelofInjurybuttons(spinalLevels)
-// End of buttons for level of Injury
+
+
 // FN for filtering
   // Collapsable section for filtering
   var coll = document.getElementsByClassName("collapsible");
@@ -107,10 +98,21 @@ $(document ).ready(function() {
   // End of section
   // Age filtering
   function ais_filter(data,age) {
-    let result=data.filter((dat) => dat['ais'] === 'B');
+    let result=data.filter((dat) => dat['group'] === 'MS');
     return result
     
   }
+    // Fn for making buttons for selecting 
+    function filterbuttons(list,htmlclass,innerhtml_id) {
+      let filterbutton=document.querySelector(innerhtml_id)
+      for (let i in list) {
+        html=`
+        <button class=${htmlclass} id= '${list[i]}'>${list[i]} </button>`
+        filterbutton.innerHTML +=html
+      }
+    }
+    filterbuttons(spinalLevels,htmlclass='spinallevels',innerhtml_id='#level_of_injury_filter')
+    filterbuttons(group,htmlclass='groups',innerhtml_id='#group')
 
 // End of filtering
 
