@@ -98,7 +98,7 @@ $(document ).ready(function() {
   // End of section
   // Age filtering
   function ais_filter(data,age) {
-    let result=data.filter((dat) => dat['group'] === 'MS');
+    let result=data.filter((dat) => dat['age'] >= 'MS');
     return result
     
   }
@@ -107,14 +107,30 @@ $(document ).ready(function() {
       let filterbutton=document.querySelector(innerhtml_id)
       for (let i in list) {
         html=`
-        <button class=${htmlclass} id= '${list[i]}'>${list[i]} </button>`
+        <button class=${htmlclass} id= '${list[i]}'>${list[i]}</button>`
         filterbutton.innerHTML +=html
       }
     }
     filterbuttons(spinalLevels,htmlclass='spinallevels',innerhtml_id='#level_of_injury_filter')
     filterbuttons(group,htmlclass='groups',innerhtml_id='#group')
 
-// End of filtering
+    // End of filtering buttons
+
+    // fn for filtering
+    let select_for_filter=[]
+    $(".spinallevels").on("click", function(){
+      if (select_for_filter.includes($(this).attr('id'))) {
+        select_for_filter=select_for_filter.filter(item => item!=$(this).attr('id'));
+        document.getElementById($(this).attr('id')).style.backgroundColor= "white";
+      } else {
+        document.getElementById($(this).attr('id')).style.backgroundColor= "cyan";
+        select_for_filter.push($(this).attr('id'))
+      }
+
+    })
+    // end of filtering
+
+
 
 });
 
