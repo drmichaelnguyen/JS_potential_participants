@@ -168,7 +168,7 @@
     "email": "mark.stevens@email.com",
     "dateOfInjury": "2018-09-20",
     "gender": "Male",
-    "levelOfInjury": "MS",
+    "levelOfInjury": "",
     "group": "MS",
     "studiesEnrolled": ["Neuroscience"],
     "eligibleForStudies": ["Neuroscience"],

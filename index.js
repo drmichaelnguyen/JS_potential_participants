@@ -7,7 +7,7 @@ $(document ).ready(function() {
       "C1", "C2", "C3", "C4", "C5", "C6", "C7",
       "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12",
       "L1", "L2", "L3", "L4", "L5",
-      "S1", "S2", "S3", "S4", "S5", 'MS'
+      "S1", "S2", "S3", "S4", "S5",
     ]
     const group=['AIS A','AIS B','AIS C', 'AIS D', 'MS']
 
@@ -23,7 +23,6 @@ $(document ).ready(function() {
             // Calculated 
             data=calculated_field(data)
             // Execute the fn to populate table
-            filtered_data=ais_filter(data)
             buildTable(data)
             isRendered = true
             // execute the function to populate tableheads
@@ -50,7 +49,8 @@ $(document ).ready(function() {
     }
   }
   function buildTable(data){
-      // let len_table=data.length
+    table.innerHTML=""
+
       for (i in data){
         cell=""
         let row=""
@@ -67,12 +67,11 @@ $(document ).ready(function() {
 
       // fn to create new calculated field
       function calculated_field(data) {
-        for (const key in data) {
-          data[key]['age']=Math.round((to_day - new Date(data[i].dateOfBirth))/(60*60*24*365*1000))
-          data[key]['yearFromInjury']=Math.round((to_day - new Date(data[i].dateOfInjury))/(60*60*24*365*1000))
+        for (const pt of data) {
+          pt['age']=Math.round(((to_day - new Date(pt['dateOfBirth'])))/(60*60*24*365*1000))
+          pt['yearFromInjury']=Math.round((to_day - new Date(pt.dateOfInjury))/(60*60*24*365*1000))
         }
         return data
-
       }
       // 
 
@@ -96,13 +95,10 @@ $(document ).ready(function() {
     });
   }
   // End of section
-  // Age filtering
-  function ais_filter(data,age) {
-    let result=data.filter((dat) => dat['age'] >= 'MS');
-    return result
+
     
-  }
-    // Fn for making buttons for selecting 
+
+    // Fn for making html buttons for selecting 
     function filterbuttons(list,htmlclass,innerhtml_id) {
       let filterbutton=document.querySelector(innerhtml_id)
       for (let i in list) {
@@ -114,20 +110,59 @@ $(document ).ready(function() {
     filterbuttons(spinalLevels,htmlclass='spinallevels',innerhtml_id='#level_of_injury_filter')
     filterbuttons(group,htmlclass='groups',innerhtml_id='#group')
 
-    // End of filtering buttons
+    // End of html filtering buttons
 
     // fn for filtering
-    let select_for_filter=[]
+    let levels_for_filtering=[]
     $(".spinallevels").on("click", function(){
-      if (select_for_filter.includes($(this).attr('id'))) {
-        select_for_filter=select_for_filter.filter(item => item!=$(this).attr('id'));
+      if (levels_for_filtering.includes($(this).attr('id'))) {
+        levels_for_filtering=levels_for_filtering.filter(item => item!=$(this).attr('id'));
         document.getElementById($(this).attr('id')).style.backgroundColor= "white";
       } else {
         document.getElementById($(this).attr('id')).style.backgroundColor= "cyan";
-        select_for_filter.push($(this).attr('id'))
+        levels_for_filtering.push($(this).attr('id'))
       }
+    })
+    let group_for_filtering=[]
+    $(".groups").on("click", function(){
+      if (group_for_filtering.includes($(this).attr('id'))) {
+        group_for_filtering=group_for_filtering.filter(item => item!=$(this).attr('id'));
+        document.getElementById($(this).attr('id')).style.backgroundColor= "white";
+      } else {
+        document.getElementById($(this).attr('id')).style.backgroundColor= "cyan";
+        group_for_filtering.push($(this).attr('id'))
+      }
+    })
+    // Filter button: Apply all current filter values to the table 
+    function filter_helper(input) {
+      let maximum_age=document.getElementById('maximum_age');
+      let minimum_age=document.getElementById('minimum_age');
+      let years_from_injury=document.getElementById('years_from_injury')
+
+        if (input.age <= maximum_age.value
+          && input.age>= minimum_age.value
+          && input.yearFromInjury>= years_from_injury.value
+          && levels_for_filtering.includes(input.levelOfInjury)
+          && group_for_filtering.includes(input.group)
+          ) {
+            console.log(input.age <= maximum_age.value)
+            return true
+        }
+        else { return false}
+      }
+    
+    $("#filter").on("click", function () {
+        // let result=data.filter((dat) => dat['age'] );
+        // return result
+      filtered_data=data.filter(filter_helper)
+      console.log(data)
+
+      buildTable(filtered_data)
+      console.log(filtered_data)
+      // console.log(years_from_injury.value)
 
     })
+
     // end of filtering
 
 
