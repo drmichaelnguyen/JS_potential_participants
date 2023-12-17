@@ -2,7 +2,6 @@ let data
 // A $( document ).ready() block.
 $(document ).ready(function() {
     // let data; // Declare the global variable
-    let isRendered = false
     const spinalLevels = [
       "C1", "C2", "C3", "C4", "C5", "C6", "C7",
       "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12",
@@ -10,6 +9,22 @@ $(document ).ready(function() {
       "S1", "S2", "S3", "S4", "S5",
     ]
     const group=['AIS A','AIS B','AIS C', 'AIS D', 'MS']
+    // Array for the html form
+    let head_n_type=[
+      {"name": "name", "type": "text", "inputType": "input", "option": "", "display": "Name"},
+      {"name": "dateOfBirth", "type": "date", "inputType": "input", "option": "", "display": "Date of Birth"},
+      {"name": "location", "type": "text", "inputType": "input", "option": "", "display": "Location"},
+      {"name": "phone", "type": "tel", "inputType": "input", "option": "", "display": "Phone"},
+      {"name": "email", "type": "email", "inputType": "input", "option": "", "display": "Email"},
+      {"name": "dateOfInjury", "type": "date", "inputType": "input", "option": "", "display": "Date of Injury"},
+      {"name": "gender", "type": "text", "inputType": "select", "option": ["", "Male", "Female"], "display": "Gender"},
+      {"name": "levelOfInjury", "type": "text", "inputType": "select", "option": spinalLevels, "display": "Level of Injury"},
+      {"name": "group", "type": "text", "inputType": "select", "option": group, "display": "Group"},
+      {"name": "studiesEnrolled", "type": "text", "inputType": "input", "option": "", "display": "Studies Enrolled"},
+      {"name": "eligibleForStudies", "type": "text", "inputType": "input", "option": "", "display": "Eligible for Studies"},
+      {"name": "notes", "type": "text", "inputType": "textarea", "option": "", "display": "Notes"},
+      {"name": "datesContacted", "type": "text", "inputType": "input", "option": "", "display": "Dates Contacted"}
+    ]
 
     // Declare variable to_day to calculate age & year from injury
     let to_day=new Date 
@@ -18,7 +33,7 @@ $(document ).ready(function() {
         url: 'data.json',
         dataType: 'json',
         success: function(response){
-          data=response
+          data=response.json_data
             // date = new Date(data[1].dateOfBirth)
             // Calculated 
             data=calculated_field(data)
@@ -32,10 +47,6 @@ $(document ).ready(function() {
             console.log(r+"Loi cmnr")
         }
     })
-// $("body").on("click", () => {
-//   console.log(data)
-//   console.log('hi')
-// })
 
 // populate json file to the table 
   let table = document.querySelector('#participants');
@@ -49,6 +60,8 @@ $(document ).ready(function() {
     }
   }
   function buildTable(data){
+    document.getElementById("submit").style.visibility = "hidden";
+
     table.innerHTML=""
 
       for (i in data){
@@ -74,9 +87,6 @@ $(document ).ready(function() {
         return data
       }
       // 
-
-
-
 
 
 // FN for filtering
@@ -155,17 +165,59 @@ $(document ).ready(function() {
         // let result=data.filter((dat) => dat['age'] );
         // return result
       filtered_data=data.filter(filter_helper)
-      console.log(data)
-
       buildTable(filtered_data)
-      console.log(filtered_data)
       // console.log(years_from_injury.value)
+    })
+    $("#reset").on("click", function () {
+    buildTable(data)
+  })
+    // end of filtering
+    
+    // Fn for display the form to add new participant 
+    $("#add").on("click", function () {
+      function make_options(array) {
+        html=""
+        for (const i of array) {
+          html+=`<option value=${i} >${i} </option>`
+        }
+        return html
+      }   
+      new_row=document.getElementById('new')
+      document.getElementById("add").style.visibility = "hidden";
+      document.getElementById("submit").style.visibility = "visible";
+      new_row.innerHTML+=`<div id="form_filling"> `
+      // new_row.innerHTML+='New Participant'
+      for (const i of head_n_type){
+        let input= `<h5> ${i.display}</h5>` 
+        if (i.inputType==='input') {
+          input+=`<${i.inputType} id='form_${i.name}' type = ${i.type} name =${i.name}> </>`
+        } else {
+          input+=`<${i.inputType} id='form_${i.name}' name =${i.name}  >${make_options(i.option)} </${i.inputType}>`
+        }
+        new_row.innerHTML+=input 
+      }
+      new_row.innerHTML+=`</div>`
 
     })
+    // end of fn for display the form
 
-    // end of filtering
-
-
+    // Fn for submit button, add data to the table and reload the full table
+    $("#submit").on("click", function () {
+      new_object={"id":data.at(-1).id +1}
+      for (const i of head_n_type) {
+        input=document.getElementById('form_'+i.name).value
+        new_object[i.name]=input
+        console.log(input)
+      }
+      data.push(new_object)
+      console.log(new_object)
+      data=calculated_field(data)
+      buildTable(data)
+      document.getElementById("new").innerHTML=``;
+      document.getElementById("add").style.visibility = "visible";
+   
+    })
+        // end of add new participant fn
 
 });
 

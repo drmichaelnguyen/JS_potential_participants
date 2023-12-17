@@ -37,3 +37,8 @@ tr:hover {background-color: paleturquoise;}
 .spinal_level_button {
   background-color: blanchedalmond;
 }
+/* style Filter button */
+#filter{
+  background-color: green;
+  font-size: 16;
+}
