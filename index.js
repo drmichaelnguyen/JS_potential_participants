@@ -69,12 +69,23 @@ $(document ).ready(function() {
         let row=""
         for (let k in data[i]){
           // console.log(data[i][k])
-          let cell=`<td> ${data[i][k]} </td>`
+          let cell=`<td class="table_row" id='${data[i].id}'> ${data[i][k]} </td>`
           row+=cell
         }
-
-
         table.innerHTML+=row
+        // Fn for click the row show the row 
+        $(".table_row").on("click", function () {
+          display_row=document.querySelector('#display_row')
+          display_row.innerHTML=``
+          display_row.innerHTML+=`<button id='edit' type="submit">EDIT</button>` 
+          row=data.find((ele) => ele['id']===Number(this.id))
+          for (const  key of Object.keys(row)) {
+            display_row.innerHTML+=`<p>${key} : ${row[key]}</p> `
+            // console.log(row[key]) 
+            }
+          })
+        // End on fn clicking the row
+
       }}
 // End of populating table
 
@@ -155,7 +166,6 @@ $(document ).ready(function() {
           && levels_for_filtering.includes(input.levelOfInjury)
           && group_for_filtering.includes(input.group)
           ) {
-            console.log(input.age <= maximum_age.value)
             return true
         }
         else { return false}
@@ -190,7 +200,7 @@ $(document ).ready(function() {
       for (const i of head_n_type){
         let input= `<h5> ${i.display}</h5>` 
         if (i.inputType==='input') {
-          input+=`<${i.inputType} id='form_${i.name}' type = ${i.type} name =${i.name}> </>`
+          input+=`<${i.inputType} id='form_${i.name}' class='input_form' type = ${i.type} name =${i.name}> </>`
         } else {
           input+=`<${i.inputType} id='form_${i.name}' name =${i.name}  >${make_options(i.option)} </${i.inputType}>`
         }
@@ -207,18 +217,17 @@ $(document ).ready(function() {
       for (const i of head_n_type) {
         input=document.getElementById('form_'+i.name).value
         new_object[i.name]=input
-        console.log(input)
       }
       data.push(new_object)
-      console.log(new_object)
       data=calculated_field(data)
       buildTable(data)
-      document.getElementById("new").innerHTML=``;
+      document.getElementById("new").innerHTML=``; // delete the form
       document.getElementById("add").style.visibility = "visible";
    
     })
         // end of add new participant fn
 
+  
 });
 
 
